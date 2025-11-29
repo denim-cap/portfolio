@@ -337,10 +337,11 @@ const Portfolio = () => {
             <div className="relative group">
               <div className="absolute -inset-4 bg-gradient-to-r from-orange-500 to-amber-600 rounded-2xl opacity-20 group-hover:opacity-40 blur-xl transition duration-500"></div>
               <div className="relative aspect-square overflow-hidden rounded-2xl border border-white/10 bg-slate-900/50 backdrop-blur-sm shadow-2xl">
-                {/* プレースホルダー画像：実際には自分の写真を入れる */}
-                <div className="w-full h-full flex items-center justify-center bg-slate-800/50 text-slate-600">
-                   <span className="text-6xl font-thin opacity-50">Image</span>
-                </div>
+                <img 
+                  src="/favicon_d.png" 
+                  alt="Takuya Yamaguchi"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </FadeIn>

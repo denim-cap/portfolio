@@ -4,6 +4,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Portfolio | Takuya Yamaguchi",
   description: "Webクリエイター/デベロッパー Takuya Yamaguchiのポートフォリオサイト",
+  icons: {
+    icon: '/favicon_d.png',
+  },
 };
 
 export default function RootLayout({
