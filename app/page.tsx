@@ -3,14 +3,38 @@
 import React, { useEffect, useRef, useState, ReactNode } from 'react';
 import { 
   Github, 
-  Twitter, 
   Linkedin, 
+  Instagram,
   ExternalLink, 
   ChevronDown,
   Palette,
   Globe,
   Database
 } from 'lucide-react';
+
+// X (formerly Twitter) icon component
+const XIcon = ({ size = 24 }: { size?: number }) => (
+  <svg 
+    width={size} 
+    height={size} 
+    viewBox="0 0 24 24" 
+    fill="currentColor"
+  >
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
+
+// TikTok icon component
+const TikTokIcon = ({ size = 24 }: { size?: number }) => (
+  <svg 
+    width={size} 
+    height={size} 
+    viewBox="0 0 24 24" 
+    fill="currentColor"
+  >
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
+  </svg>
+);
 
 // スクロールアニメーション用フック
 const useScrollAnimation = (threshold = 0.1) => {
@@ -292,6 +316,43 @@ const BinaryBackground = () => {
 };
 
 const Portfolio = () => {
+  // Contact form state
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSubmitStatus({ type: 'success', message: 'メッセージを送信しました！' });
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setSubmitStatus({ type: 'error', message: data.error || '送信に失敗しました' });
+      }
+    } catch {
+      setSubmitStatus({ type: 'error', message: 'ネットワークエラーが発生しました' });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="min-h-screen text-slate-200 font-sans selection:bg-orange-500 selection:text-white overflow-x-hidden">
       {/* ===== バイナリ背景 ===== */}
@@ -374,14 +435,20 @@ const Portfolio = () => {
             
             <FadeIn delay={400} direction="up">
               <div className="flex gap-4 pt-4">
-                <a href="#" className="p-3 bg-slate-800/50 backdrop-blur-sm rounded-full hover:bg-slate-700/50 hover:text-orange-400 transition-colors hover:scale-110 transform duration-300">
+                <a href="https://github.com/denim-cap/portfolio" target="_blank" rel="noopener noreferrer" className="p-3 bg-slate-800/50 backdrop-blur-sm rounded-full hover:bg-slate-700/50 hover:text-orange-400 transition-colors hover:scale-110 transform duration-300">
                   <Github size={24} />
                 </a>
-                <a href="#" className="p-3 bg-slate-800/50 backdrop-blur-sm rounded-full hover:bg-slate-700/50 hover:text-orange-400 transition-colors hover:scale-110 transform duration-300">
-                  <Twitter size={24} />
+                <a href="https://x.com/denimcap1947" target="_blank" rel="noopener noreferrer" className="p-3 bg-slate-800/50 backdrop-blur-sm rounded-full hover:bg-slate-700/50 hover:text-orange-400 transition-colors hover:scale-110 transform duration-300">
+                  <XIcon size={24} />
                 </a>
-                <a href="#" className="p-3 bg-slate-800/50 backdrop-blur-sm rounded-full hover:bg-slate-700/50 hover:text-orange-400 transition-colors hover:scale-110 transform duration-300">
+                <a href="https://www.linkedin.com/in/takuya-yamaguchi-a9a57339b/" target="_blank" rel="noopener noreferrer" className="p-3 bg-slate-800/50 backdrop-blur-sm rounded-full hover:bg-slate-700/50 hover:text-orange-400 transition-colors hover:scale-110 transform duration-300">
                   <Linkedin size={24} />
+                </a>
+                <a href="https://www.instagram.com/denimcap1947/" target="_blank" rel="noopener noreferrer" className="p-3 bg-slate-800/50 backdrop-blur-sm rounded-full hover:bg-slate-700/50 hover:text-orange-400 transition-colors hover:scale-110 transform duration-300">
+                  <Instagram size={24} />
+                </a>
+                <a href="https://www.tiktok.com/@denim_cap" target="_blank" rel="noopener noreferrer" className="p-3 bg-slate-800/50 backdrop-blur-sm rounded-full hover:bg-slate-700/50 hover:text-orange-400 transition-colors hover:scale-110 transform duration-300">
+                  <TikTokIcon size={24} />
                 </a>
               </div>
             </FadeIn>
@@ -573,12 +640,16 @@ const Portfolio = () => {
 
         <FadeIn delay={200} direction="up">
           <div className="max-w-2xl mx-auto bg-slate-900/30 backdrop-blur-lg border border-white/5 rounded-3xl p-8 md:p-12 shadow-2xl card-hover">
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-slate-300">Name</label>
                   <input 
-                    type="text" 
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
                     className="w-full bg-slate-950/30 backdrop-blur-sm border border-slate-700/50 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all input-focus-glow"
                     placeholder="山田 太郎"
                   />
@@ -586,7 +657,11 @@ const Portfolio = () => {
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-slate-300">Email</label>
                   <input 
-                    type="email" 
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
                     className="w-full bg-slate-950/30 backdrop-blur-sm border border-slate-700/50 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all input-focus-glow"
                     placeholder="hello@example.com"
                   />
@@ -596,17 +671,36 @@ const Portfolio = () => {
               <div className="space-y-2">
                 <label className="text-sm font-medium text-slate-300">Message</label>
                 <textarea 
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
                   rows={5}
                   className="w-full bg-slate-950/30 backdrop-blur-sm border border-slate-700/50 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all resize-none input-focus-glow"
                   placeholder="プロジェクトの詳細やご相談内容をご記入ください..."
                 ></textarea>
               </div>
 
+              {submitStatus && (
+                <div className={`p-4 rounded-xl text-center ${
+                  submitStatus.type === 'success' 
+                    ? 'bg-green-500/20 text-green-400 border border-green-500/30' 
+                    : 'bg-red-500/20 text-red-400 border border-red-500/30'
+                }`}>
+                  {submitStatus.message}
+                </div>
+              )}
+
               <button 
-                type="button"
-                className="w-full py-4 bg-gradient-to-r from-orange-600 to-amber-600 text-white rounded-xl font-bold text-lg hover:shadow-[0_0_20px_rgba(251,146,60,0.5)] transition-all transform hover:-translate-y-1 btn-pulse"
+                type="submit"
+                disabled={isSubmitting}
+                className={`w-full py-4 bg-gradient-to-r from-orange-600 to-amber-600 text-white rounded-xl font-bold text-lg transition-all transform ${
+                  isSubmitting 
+                    ? 'opacity-70 cursor-not-allowed' 
+                    : 'hover:shadow-[0_0_20px_rgba(251,146,60,0.5)] hover:-translate-y-1 btn-pulse'
+                }`}
               >
-                Send Message
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
             </form>
           </div>
