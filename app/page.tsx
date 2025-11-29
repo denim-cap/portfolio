@@ -481,9 +481,11 @@ const Portfolio = () => {
               <div className="group relative bg-slate-900/30 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/5 hover:border-orange-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-900/20 card-hover">
                 <div className="aspect-video bg-slate-800/50 overflow-hidden relative">
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-60 z-10"></div>
-                  <div className="w-full h-full bg-slate-700/50 group-hover:scale-105 transition-transform duration-700 flex items-center justify-center">
-                    <span className="text-slate-500 font-mono text-lg">飲食店向けWebサイト</span>
-                  </div>
+                  <img 
+                    src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=80&w=2670&auto=format&fit=crop" 
+                    alt="飲食店向けWebサイト" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
                 </div>
                 
                 <div className="p-6 relative z-20">
@@ -492,7 +494,7 @@ const Portfolio = () => {
                     メニュー紹介、店舗情報、オンライン予約機能などを備えた、飲食店向けのモダンなWebサイトデモです。
                   </p>
                   <div className="flex justify-end items-center mt-4 pt-4">
-                    <a href="#" className="flex items-center gap-2 text-sm text-slate-300 hover:text-white transition-colors link-hover">
+                    <a href="/demo/restaurant" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-slate-300 hover:text-white transition-colors link-hover">
                       <ExternalLink size={16} /> デモを見る
                     </a>
                   </div>
@@ -505,9 +507,11 @@ const Portfolio = () => {
               <div className="group relative bg-slate-900/30 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/5 hover:border-orange-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-900/20 card-hover">
                 <div className="aspect-video bg-slate-800/50 overflow-hidden relative">
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-60 z-10"></div>
-                  <div className="w-full h-full bg-slate-700/50 group-hover:scale-105 transition-transform duration-700 flex items-center justify-center">
-                    <span className="text-slate-500 font-mono text-lg">士業向けコーポレートサイト</span>
-                  </div>
+                  <img 
+                    src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000" 
+                    alt="士業向けコーポレートサイト" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
                 </div>
                 
                 <div className="p-6 relative z-20">
@@ -516,7 +520,7 @@ const Portfolio = () => {
                     弁護士・税理士・行政書士などの専門性を際立たせる、信頼感のあるコーポレートサイトのデモです。
                   </p>
                   <div className="flex justify-end items-center mt-4 pt-4">
-                    <a href="#" className="flex items-center gap-2 text-sm text-slate-300 hover:text-white transition-colors link-hover">
+                    <a href="/demo/legal" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-slate-300 hover:text-white transition-colors link-hover">
                       <ExternalLink size={16} /> デモを見る
                     </a>
                   </div>
@@ -529,9 +533,11 @@ const Portfolio = () => {
               <div className="group relative bg-slate-900/30 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/5 hover:border-orange-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-900/20 card-hover">
                 <div className="aspect-video bg-slate-800/50 overflow-hidden relative">
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-60 z-10"></div>
-                  <div className="w-full h-full bg-slate-700/50 group-hover:scale-105 transition-transform duration-700 flex items-center justify-center">
-                    <span className="text-slate-500 font-mono text-lg">企業サイト</span>
-                  </div>
+                  <img 
+                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" 
+                    alt="企業サイト" 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
                 </div>
                 
                 <div className="p-6 relative z-20">
@@ -540,7 +546,7 @@ const Portfolio = () => {
                     企業のブランド力を高める、洗練されたデザインとパフォーマンスを兼ね備えた企業サイトのデモです。
                   </p>
                   <div className="flex justify-end items-center mt-4 pt-4">
-                    <a href="#" className="flex items-center gap-2 text-sm text-slate-300 hover:text-white transition-colors link-hover">
+                    <a href="/demo/corporation" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-slate-300 hover:text-white transition-colors link-hover">
                       <ExternalLink size={16} /> デモを見る
                     </a>
                   </div>
